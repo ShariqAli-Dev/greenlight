@@ -1,6 +1,7 @@
 package data
 
 import (
+	"database/sql"
 	"time"
 
 	"github.com/shariqali-dev/greenlight/internal/validator"
@@ -31,4 +32,20 @@ func ValidateMovie(v *validator.Validator, movie *Movie) {
 	v.Check(len(movie.Genres) >= 1, "genres", "must contain at least 1 genre")
 	v.Check(len(movie.Genres) <= 5, "genres", "must not contain more than 5 genres")
 	v.Check(validator.Unique(movie.Genres), "genres", "must not contain duplicate values")
+}
+
+type MovieModal struct {
+	DB *sql.DB
+}
+
+func (m MovieModal) Insert(movie *Movie) error { return nil }
+
+func (m MovieModal) Get(id int64) (*Movie, error) {
+	return nil, nil
+}
+func (m MovieModal) Update(movie *Movie) error {
+	return nil
+}
+func (m MovieModal) Delete(id int64) error {
+	return nil
 }
